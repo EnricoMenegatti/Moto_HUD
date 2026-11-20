@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.HudNav" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.HudNav.Base" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent</item>
-        <item name="colorPrimaryVariant">@color/accent</item>
-        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnPrimary">@color/on_accent</item>
+        <item name="colorPrimaryContainer">@color/accent_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_accent_container</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorOnSecondary">@color/on_accent</item>
+        <item name="colorSecondaryContainer">@color/chip</item>
+        <item name="colorOnSecondaryContainer">@color/ink</item>
+        <item name="colorTertiary">@color/accent</item>
+        <item name="colorOnTertiary">@color/on_accent</item>
+        <item name="colorError">@color/danger</item>
+        <item name="colorOnError">@color/on_accent</item>
+        <item name="colorSurface">@color/sheet</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="colorSurfaceVariant">@color/chip</item>
+        <item name="colorOnSurfaceVariant">@color/sub</item>
+        <item name="colorOutline">@color/sub</item>
+        <item name="colorOutlineVariant">@color/line</item>
+        <item name="colorSurfaceContainer">@color/sheet</item>
+        <item name="colorSurfaceContainerHigh">@color/chip</item>
+        <item name="colorSurfaceContainerHighest">@color/chip</item>
+        <item name="colorSurfaceContainerLow">@color/sheet</item>
+        <item name="colorSurfaceContainerLowest">@color/sheet</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="colorOnBackground">@color/ink</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/ripple</item>
         <item name="android:statusBarColor">@color/bg</item>
         <item name="android:navigationBarColor">@color/sheet</item>
         <item name="android:windowBackground">@color/bg</item>
+        <item name="android:textColorPrimary">@color/ink</item>
+        <item name="android:textColorSecondary">@color/sub</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="materialButtonStyle">@style/Widget.HudNav.Button</item>
+        <item name="sliderStyle">@style/Widget.Material3.Slider</item>
+        <item name="switchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
+    </style>
+
+    <style name="Theme.HudNav" parent="Theme.HudNav.Base">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>

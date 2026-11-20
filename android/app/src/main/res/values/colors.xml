@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#FFF4F5F7</color>
-    <color name="panel">#FFFFFFFF</color>
-    <color name="text">#FF16181D</color>
-    <color name="muted">#FF6B7280</color>
-    <color name="accent">#FF1D4ED8</color>
+    <color name="brand">#FF1D4ED8</color>
+    <color name="bg">#FFF3F5F9</color>
     <color name="sheet">#FFFFFFFF</color>
-    <color name="ink">#FF16181D</color>
-    <color name="sub">#FF6B7280</color>
-    <color name="nav">#FF1D4ED8</color>
-    <color name="chip">#FFF3F4F6</color>
-    <color name="line">#FFE6E8EE</color>
-    <color name="banner">#FF12141A</color>
-    <color name="banner_sub">#FFC5CAD3</color>
-    <color name="warn">#FFEA580C</color>
+    <color name="ink">#FF1A1C1F</color>
+    <color name="sub">#FF5C6370</color>
+    <color name="accent">#FF1D4ED8</color>
+    <color name="on_accent">#FFFFFFFF</color>
+    <color name="accent_container">#FFDCE4FF</color>
+    <color name="on_accent_container">#FF00174B</color>
+    <color name="chip">#FFEEF0F5</color>
+    <color name="line">#FFE2E5ED</color>
+    <color name="grabber">#FFC5CAD3</color>
+    <color name="ripple">#1F1A1C1F</color>
+    <color name="nav">@color/accent</color>
+    <color name="warn">#FFC2410C</color>
     <color name="danger">#FFDC2626</color>
     <color name="arrive">#FF15803D</color>
+    <color name="panel">@color/sheet</color>
+    <color name="text">@color/ink</color>
+    <color name="muted">@color/sub</color>
+
+    <color name="banner">#FF12141A</color>
+    <color name="banner_sub">#FFC5CAD3</color>
+    <color name="banner_stroke">#1FFFFFFF</color>
+    <color name="on_banner">#FFFFFFFF</color>
+    <color name="speed_bg">#F212141A</color>
+    <color name="limit_fill">#FFFFFFFF</color>
+    <color name="limit_ink">#FF202124</color>
+    <color name="overspeed">#FFFF8A80</color>
+    <color name="route">@color/brand</color>
+    <color name="route_ghost">#FF9AA3B2</color>
+    <color name="pin_dest">#FF15803D</color>
+    <color name="pin_fuel">#FF15803D</color>
+    <color name="pin_food">#FFE37400</color>
+    <color name="pin_camera">#FFE37400</color>
+    <color name="pin_danger">#FFD93025</color>
 </resources>
