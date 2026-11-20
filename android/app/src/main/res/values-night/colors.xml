@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FF101318</color>
+    <color name="sheet">#FF1B1F27</color>
+    <color name="ink">#FFE8EAF0</color>
+    <color name="sub">#FFA7ADBA</color>
+    <color name="accent">#FFAFC6FF</color>
+    <color name="on_accent">#FF002D6E</color>
+    <color name="accent_container">#FF1E3A8A</color>
+    <color name="on_accent_container">#FFDCE4FF</color>
+    <color name="chip">#FF2A3140</color>
+    <color name="line">#FF3C4454</color>
+    <color name="grabber">#FF5C6575</color>
+    <color name="ripple">#33FFFFFF</color>
+    <color name="panel">@color/sheet</color>
+    <color name="text">@color/ink</color>
+    <color name="muted">@color/sub</color>
+</resources>

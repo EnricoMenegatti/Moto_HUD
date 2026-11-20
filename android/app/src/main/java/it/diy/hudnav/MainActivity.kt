@@ -20,18 +20,19 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.util.TypedValue
 import android.widget.Button
 import android.widget.EditText
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import android.widget.SeekBar
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.android.material.slider.Slider
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -227,35 +228,32 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.lay_curve).setOnClickListener { pickLayout(2) }
 
         val box = ctrlPrefs()
-        findViewById<SeekBar>(R.id.bright).progress = box.getInt("bright", 255)
-        findViewById<SwitchMaterial>(R.id.mirror).isChecked = box.getBoolean("mirror", false)
-        findViewById<SwitchMaterial>(R.id.power).isChecked = box.getBoolean("power", true)
-        findViewById<SwitchMaterial>(R.id.voice).isChecked = speaker.enabled
+        findViewById<Slider>(R.id.bright).value = box.getInt("bright", 255).coerceIn(0, 255).toFloat()
+        findViewById<MaterialSwitch>(R.id.mirror).isChecked = box.getBoolean("mirror", false)
+        findViewById<MaterialSwitch>(R.id.power).isChecked = box.getBoolean("power", true)
+        findViewById<MaterialSwitch>(R.id.voice).isChecked = speaker.enabled
         paintLayouts(box.getInt("layout", 0))
-        findViewById<SeekBar>(R.id.bright).setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(bar: SeekBar?, value: Int, fromUser: Boolean) {
-                if (!fromUser || restoring) return
-                val token = ++brightToken
-                ui.postDelayed({
-                    if (token != brightToken) return@postDelayed
-                    ctrlPrefs().edit().putInt("bright", value).apply()
-                    sendCtrl(3, value, "luminosità $value")
-                }, 280)
-            }
-            override fun onStartTrackingTouch(bar: SeekBar?) {}
-            override fun onStopTrackingTouch(bar: SeekBar?) {}
-        })
-        findViewById<SwitchMaterial>(R.id.mirror).setOnCheckedChangeListener { _, on ->
+        findViewById<Slider>(R.id.bright).addOnChangeListener { _, value, fromUser ->
+            if (!fromUser || restoring) return@addOnChangeListener
+            val token = ++brightToken
+            val level = value.toInt()
+            ui.postDelayed({
+                if (token != brightToken) return@postDelayed
+                ctrlPrefs().edit().putInt("bright", level).apply()
+                sendCtrl(3, level, "luminosità $level")
+            }, 280)
+        }
+        findViewById<MaterialSwitch>(R.id.mirror).setOnCheckedChangeListener { _, on ->
             if (restoring) return@setOnCheckedChangeListener
             ctrlPrefs().edit().putBoolean("mirror", on).apply()
             sendCtrl(2, if (on) 1 else 0, if (on) "specchio attivo" else "specchio spento")
         }
-        findViewById<SwitchMaterial>(R.id.power).setOnCheckedChangeListener { _, on ->
+        findViewById<MaterialSwitch>(R.id.power).setOnCheckedChangeListener { _, on ->
             if (restoring) return@setOnCheckedChangeListener
             ctrlPrefs().edit().putBoolean("power", on).apply()
             sendCtrl(4, if (on) 1 else 0, if (on) "acceso" else "spento")
         }
-        findViewById<SwitchMaterial>(R.id.voice).setOnCheckedChangeListener { _, on ->
+        findViewById<MaterialSwitch>(R.id.voice).setOnCheckedChangeListener { _, on ->
             if (restoring) return@setOnCheckedChangeListener
             speaker.enabled = on
             if (on) speaker.say("Voce attiva")
@@ -410,7 +408,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun paintAvoid() {
         val view = findViewById<TextView>(R.id.avoid)
-        view.setTextColor(if (avoidMotorway) Color.WHITE else Color.parseColor("#16181D"))
+        view.setTextColor(if (avoidMotorway) colorOf(R.color.on_accent) else colorOf(R.color.ink))
         view.setBackgroundResource(if (avoidMotorway) R.drawable.bg_primary else R.drawable.bg_chip)
     }
 
@@ -444,6 +442,8 @@ class MainActivity : AppCompatActivity() {
     private var lastAlert = ""
 
     private fun ctrlPrefs() = getSharedPreferences("hud_ctrl", MODE_PRIVATE)
+
+    private fun colorOf(id: Int) = ContextCompat.getColor(this, id)
 
     private fun status(text: String) {
         HudState.status.value = text
@@ -547,7 +547,9 @@ class MainActivity : AppCompatActivity() {
         view.text = if (kmh.isNullOrBlank()) "—" else kmh
         val lim = HudState.limit.value?.toIntOrNull()
         val spd = kmh?.toIntOrNull()
-        view.setTextColor(if (lim != null && spd != null && spd > lim + 4) Color.parseColor("#FF8A80") else Color.WHITE)
+        view.setTextColor(
+            if (lim != null && spd != null && spd > lim + 4) colorOf(R.color.overspeed) else colorOf(R.color.on_banner)
+        )
     }
 
     private fun paintLimit(text: String?) {
@@ -669,15 +671,22 @@ class MainActivity : AppCompatActivity() {
         status("")
         hits.addView(TextView(this).apply {
             text = "Chiudi"
-            setTextColor(Color.parseColor("#1D4ED8"))
-            textSize = 14f
-            setPadding(8, 20, 8, 12)
+            setTextAppearance(R.style.TextAppearance_HudNav_LabelLarge)
+            setTextColor(colorOf(R.color.accent))
+            val h = (8 * resources.displayMetrics.density).toInt()
+            val v = (12 * resources.displayMetrics.density).toInt()
+            setPadding(h, v + 8, h, v)
             setOnClickListener { closeHits() }
         })
         for (hit in found) {
             val rowView = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
-                setPadding(8, 16, 8, 16)
+                val h = (8 * resources.displayMetrics.density).toInt()
+                val v = (14 * resources.displayMetrics.density).toInt()
+                setPadding(h, v, h, v)
+                val out = TypedValue()
+                theme.resolveAttribute(android.R.attr.selectableItemBackground, out, true)
+                setBackgroundResource(out.resourceId)
                 setOnClickListener {
                     closeHits()
                     if (poi) askPlace(hit) else placePicked(hit, recenter = true)
@@ -685,14 +694,23 @@ class MainActivity : AppCompatActivity() {
             }
             rowView.addView(TextView(this).apply {
                 text = hit.name
-                setTextColor(Color.parseColor("#16181D"))
-                textSize = 16f
+                setTextAppearance(R.style.TextAppearance_HudNav_BodyLarge)
+                setTextColor(colorOf(R.color.ink))
             })
             if (hit.kind.isNotBlank() && hit.kind !in setOf("fuel", "parking", "food", "aid")) {
                 rowView.addView(TextView(this).apply {
                     text = hit.kind
-                    setTextColor(Color.parseColor("#6B7280"))
-                    textSize = 13f
+                    setTextAppearance(R.style.TextAppearance_HudNav_BodySmall)
+                    setTextColor(colorOf(R.color.sub))
+                })
+            }
+            if (hits.childCount > 1) {
+                hits.addView(View(this).apply {
+                    setBackgroundColor(colorOf(R.color.line))
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        (resources.displayMetrics.density).toInt().coerceAtLeast(1)
+                    )
                 })
             }
             hits.addView(rowView)
@@ -705,7 +723,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun askPlace(hit: PlaceHit) {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(hit.name)
             .setMessage(hit.kind.ifBlank { "Punto trovato sulla mappa" })
             .setPositiveButton("Portami qui") { _, _ -> setDestination(hit, recenter = true) }
@@ -908,7 +926,7 @@ class MainActivity : AppCompatActivity() {
         }
         val add = findViewById<TextView>(R.id.add_stop)
         add.text = if (addingStop) "Annulla" else getString(R.string.add_stop)
-        add.setTextColor(if (addingStop) Color.WHITE else Color.parseColor("#16181D"))
+        add.setTextColor(if (addingStop) colorOf(R.color.on_accent) else colorOf(R.color.ink))
         add.setBackgroundResource(if (addingStop) R.drawable.bg_primary else R.drawable.bg_chip)
         paintStopMarkers()
         saveTrip()
@@ -923,7 +941,7 @@ class MainActivity : AppCompatActivity() {
         val selected = editing == index
         val name = hit.name.substringBefore(",").take(18).ifBlank { hit.name }
         val prefix = if (index == stops.lastIndex) "Arrivo" else "Tappa ${index + 1}"
-        val ink = if (selected) Color.WHITE else Color.parseColor("#16181D")
+        val ink = if (selected) colorOf(R.color.on_accent) else colorOf(R.color.ink)
         return LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = android.view.Gravity.CENTER_VERTICAL
@@ -957,7 +975,7 @@ class MainActivity : AppCompatActivity() {
     private fun stopBit(label: String, color: Int, onClick: () -> Unit): TextView {
         return TextView(this).apply {
             text = label
-            textSize = 14f
+            setTextAppearance(R.style.TextAppearance_HudNav_LabelLarge)
             setTextColor(color)
             val pad = (10 * resources.displayMetrics.density).toInt()
             setPadding(pad + 6, pad, pad + 6, pad)
@@ -968,9 +986,9 @@ class MainActivity : AppCompatActivity() {
     private fun chip(text: String, selected: Boolean, onClick: () -> Unit): TextView {
         return TextView(this).apply {
             this.text = text
-            textSize = 14f
+            setTextAppearance(R.style.TextAppearance_HudNav_LabelLarge)
             gravity = android.view.Gravity.CENTER
-            setTextColor(if (selected) Color.WHITE else Color.parseColor("#16181D"))
+            setTextColor(if (selected) colorOf(R.color.on_accent) else colorOf(R.color.ink))
             background = ContextCompat.getDrawable(
                 this@MainActivity,
                 if (selected) R.drawable.bg_primary else R.drawable.bg_chip
@@ -1126,8 +1144,8 @@ class MainActivity : AppCompatActivity() {
         for (hit in items) {
             val b = TextView(this).apply {
                 text = hit.name.substringBefore(",").take(28)
-                setTextColor(Color.parseColor("#16181D"))
-                textSize = 14f
+                setTextAppearance(R.style.TextAppearance_HudNav_LabelLarge)
+                setTextColor(colorOf(R.color.ink))
                 background = ContextCompat.getDrawable(this@MainActivity, R.drawable.bg_chip)
                 val h = (16 * resources.displayMetrics.density).toInt()
                 val v = (10 * resources.displayMetrics.density).toInt()
@@ -1203,16 +1221,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun paintLayouts(which: Int) {
         val ids = intArrayOf(R.id.lay_icon, R.id.lay_map, R.id.lay_curve)
-        val radius = (16 * resources.displayMetrics.density).toInt()
-        val accent = Color.parseColor("#1D4ED8")
-        val chip = Color.parseColor("#F3F4F6")
-        val ink = Color.parseColor("#16181D")
+        val radius = resources.getDimensionPixelSize(R.dimen.corner_full)
+        val accent = colorOf(R.color.accent)
+        val idle = Color.TRANSPARENT
+        val ink = colorOf(R.color.ink)
+        val onAccent = colorOf(R.color.on_accent)
         for (i in ids.indices) {
             val b = findViewById<com.google.android.material.button.MaterialButton>(ids[i])
             val on = i == which
             b.cornerRadius = radius
-            b.backgroundTintList = android.content.res.ColorStateList.valueOf(if (on) accent else chip)
-            b.setTextColor(if (on) Color.WHITE else ink)
+            b.backgroundTintList = android.content.res.ColorStateList.valueOf(if (on) accent else idle)
+            b.setTextColor(if (on) onAccent else ink)
         }
     }
 
@@ -1256,7 +1275,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveDest(p: LatLon) {
         val marker = destMarker ?: Marker(map).also {
             it.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            it.icon = pin(Color.parseColor("#15803D"))
+            it.icon = pin(colorOf(R.color.pin_dest))
             map.overlays.add(it)
             destMarker = it
         }
@@ -1403,14 +1422,14 @@ class MainActivity : AppCompatActivity() {
     private fun paintHeading() {
         val view = findViewById<TextView>(R.id.heading)
         view.text = if (headingUp) "⟳" else "N"
-        view.setTextColor(if (headingUp) Color.WHITE else Color.parseColor("#16181D"))
+        view.setTextColor(if (headingUp) colorOf(R.color.on_accent) else colorOf(R.color.ink))
         view.setBackgroundResource(if (headingUp) R.drawable.bg_primary else R.drawable.bg_fab)
     }
 
     private fun paintLocate() {
         val view = findViewById<TextView>(R.id.locate)
         val paused = HudState.running.value == true && !follow
-        view.setTextColor(if (paused) Color.WHITE else Color.parseColor("#1D4ED8"))
+        view.setTextColor(if (paused) colorOf(R.color.on_accent) else colorOf(R.color.accent))
         view.setBackgroundResource(if (paused) R.drawable.bg_primary else R.drawable.bg_fab)
     }
 
@@ -1424,7 +1443,7 @@ class MainActivity : AppCompatActivity() {
             paint.color = Color.WHITE
             val cx = s / 2f
             canvas.drawCircle(cx, cx, s * 0.34f, paint)
-            paint.color = Color.parseColor("#1D4ED8")
+            paint.color = colorOf(R.color.route)
             canvas.drawCircle(cx, cx, s * 0.28f, paint)
             paint.color = Color.WHITE
             val tip = s * 0.16f
@@ -1452,7 +1471,7 @@ class MainActivity : AppCompatActivity() {
             val geos = plans[i].points.map { GeoPoint(it.lat, it.lon) }
             val ghost = Polyline(map).apply {
                 setPoints(geos)
-                outlinePaint.color = Color.parseColor("#9AA3B2")
+                outlinePaint.color = colorOf(R.color.route_ghost)
                 outlinePaint.strokeWidth = 6f * resources.displayMetrics.density
                 outlinePaint.strokeCap = Paint.Cap.ROUND
                 setOnClickListener { _, _, _ ->
@@ -1538,7 +1557,7 @@ class MainActivity : AppCompatActivity() {
             val made = Bitmap.createBitmap(s, s, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(made)
             val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-            paint.color = Color.parseColor("#1D4ED8")
+            paint.color = colorOf(R.color.route)
             val c = s / 2f
             canvas.drawCircle(c, c, c - 2f, paint)
             paint.color = Color.WHITE
@@ -1574,7 +1593,7 @@ class MainActivity : AppCompatActivity() {
         }
         val geos = pts.map { GeoPoint(it.lat, it.lon) }
         val under = routeLine(geos, Color.WHITE, 12f)
-        val over = routeLine(geos, Color.parseColor("#1D4ED8"), 8f)
+        val over = routeLine(geos, colorOf(R.color.route), 8f)
         map.overlays.add(0, under)
         map.overlays.add(1, over)
         casing = under
@@ -1634,7 +1653,7 @@ class MainActivity : AppCompatActivity() {
             marker.title = item.label
             marker.infoWindow = null
             marker.setOnMarkerClickListener { _, _ ->
-                AlertDialog.Builder(this)
+                MaterialAlertDialogBuilder(this)
                     .setTitle(item.label)
                     .setMessage("Segnalazione fissa di OpenStreetMap, non un avviso live.")
                     .setNegativeButton("Chiudi", null)
@@ -1642,7 +1661,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             val camera = item.label.startsWith("Autovelox") || item.label.startsWith("Tutor")
-            marker.icon = pin(Color.parseColor(if (camera) "#E37400" else "#D93025"), 11)
+            marker.icon = pin(colorOf(if (camera) R.color.pin_camera else R.color.pin_danger), 11)
             cameraMarkers.add(marker)
             map.overlays.add(marker)
         }
@@ -1673,10 +1692,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun poiColor(kind: String): Int = when (kind) {
-        "fuel" -> Color.parseColor("#15803D")
-        "parking" -> Color.parseColor("#1D4ED8")
-        "food" -> Color.parseColor("#E37400")
-        else -> Color.parseColor("#D93025")
+        "fuel" -> colorOf(R.color.pin_fuel)
+        "parking" -> colorOf(R.color.route)
+        "food" -> colorOf(R.color.pin_food)
+        else -> colorOf(R.color.pin_danger)
     }
 
     private fun raise(marker: Marker?) {
