@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD Curve</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+  header { padding: 10px 12px 0; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  #status { min-height: 2.4em; font-size: 14px; color: #ccc; margin: 0; }
+  #help { margin: 8px 12px; padding: 10px; background: #3a2a00; border-radius: 8px; font-size: 14px; }
+  #help code { color: #ffd36a; }
+  #map { height: 42vh; margin: 8px 0; background: #222; }
+  .panel { padding: 0 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; gap: 8px; }
+  input[type="search"], input[type="number"] {
+    flex: 1; font-size: 16px; padding: 10px; border-radius: 8px; border: 0; background: #2a2a2a; color: #fff;
+  }
+  button {
+    font-size: 16px; padding: 12px 14px; border: 0; border-radius: 8px; background: #2f6fed; color: #fff;
+  }
+  button.secondary { background: #333; }
+  button:disabled { opacity: 0.45; }
+  #hits { display: flex; flex-direction: column; gap: 4px; }
+  #hits button { text-align: left; background: #222; }
+  label.sim { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+  #plog { height: 8em; overflow: auto; margin: 8px 12px 12px; padding: 8px; background: #000; color: #9f9; font: 12px/1.35 ui-monospace, monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>HUD Curve</h1>
+  <p id="status">Imposta l'arrivo, collega la scheda, avvia.</p>
+</header>
+<div id="help" hidden></div>
+<div id="map"></div>
+<div class="panel">
+  <div class="row">
+    <input id="q" type="search" placeholder="Cerca arrivo, oppure tocca la mappa" enterkeyhint="search">
+    <button id="search" class="secondary" type="button">Cerca</button>
+  </div>
+  <div id="hits"></div>
+  <div class="row">
+    <button id="startHere" class="secondary" type="button">Partenza qui</button>
+    <button id="connect" type="button">Collega HUD</button>
+    <button id="go" type="button" disabled>Avvia</button>
+    <button id="stop" class="secondary" type="button" disabled>Stop</button>
+  </div>
+  <label class="sim"><input id="sim" type="checkbox"> Simula senza muoverti
+    <input id="kmh" type="number" min="10" max="130" value="70" style="width:4.5em"> km/h
+  </label>
+  <p class="note">La strada e' quella in auto (OpenStreetMap). Se esci dal percorso ne calcola un'altra verso lo stesso arrivo. Chronos puo' restare aperto per freccia e distanza.</p>
+  <pre id="plog"></pre>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const BLE_NAME = "HUD-Moto";
+const SVC = "8d1f0001-6a4c-4b3e-9a0e-7c2d5f1e4b00";
+const CHR = "8d1f0002-6a4c-4b3e-9a0e-7c2d5f1e4b00";
+const WINDOW_M = 11000;
+const OFF_M = 45;
+const REROUTE_MS = 20000;
+
+const statusEl = document.getElementById("status");
+const helpEl = document.getElementById("help");
+const plog = document.getElementById("plog");
+function log(level, msg) {
+  const line = new Date().toISOString().slice(11, 23) + " " + level + " " + msg;
+  plog.textContent += line + "\n";
+  plog.scrollTop = plog.scrollHeight;
+  fetch("/api/log", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ level, msg })
+  }).catch(() => {});
+}
+function setStatus(t) { statusEl.textContent = t; log("INFO", t); }
+function errText(err) {
+  if (!err) return "errore sconosciuto";
+  return (err.name || "Error") + ": " + (err.message || err);
+}
+log("INFO", "pagina secure=" + window.isSecureContext + " bluetooth=" + !!navigator.bluetooth + " origin=" + location.origin);
+
+if (!window.isSecureContext || !navigator.bluetooth) {
+  helpEl.hidden = false;
+  const origin = location.origin;
+  helpEl.innerHTML =
+    "Chrome blocca Bluetooth e GPS su questa pagina. Sul telefono, in Chrome, apri " +
+    "<code>chrome://flags</code>, cerca <b>Insecure origins treated as secure</b>, " +
+    "incolla <code>" + origin + "</code>, scegli Enabled e rilancia Chrome. Poi riapri questa pagina.";
+}
+
+const map = L.map("map").setView([45.55, 11.55], 8);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, attribution: "&copy; OpenStreetMap"
+}).addTo(map);
+
+let dest = null;
+let destMarker = null;
+let startPt = null;
+let startMarker = null;
+let startLocked = false;
+let riderMarker = null;
+let line = null;
+let route = [];
+let cum = [];
+let gattChar = null;
+let following = false;
+let busy = false;
+let perPacket = 8;
+let watchId = 0;
+let simTimer = 0;
+let simS = 0;
+let sentTo = 0;
+let offStreak = 0;
+let lastReroute = 0;
+let gps = null;
+let fixing = false;
+
+function hav(a, b) {
+  const R = 6371000;
+  const p1 = a.lat * Math.PI / 180, p2 = b.lat * Math.PI / 180;
+  const dp = (b.lat - a.lat) * Math.PI / 180, dl = (b.lon - a.lon) * Math.PI / 180;
+  const h = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+function bearing(a, b) {
+  const p1 = a.lat * Math.PI / 180, p2 = b.lat * Math.PI / 180;
+  const dl = (b.lon - a.lon) * Math.PI / 180;
+  const y = Math.sin(dl) * Math.cos(p2);
+  const x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+function e7(deg) { return Math.round(deg * 1e7); }
+function routeLen() { return cum.length ? cum[cum.length - 1] : 0; }
+
+function setCum(pts) {
+  cum = [0];
+  for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + hav(pts[i - 1], pts[i]));
+}
+function pointAt(dist) {
+  if (!route.length) return null;
+  if (dist <= 0) return route[0];
+  if (dist >= routeLen()) return route[route.length - 1];
+  let lo = 0, hi = cum.length - 1;
+  while (lo + 1 < hi) {
+    const mid = (lo + hi) >> 1;
+    if (cum[mid] <= dist) lo = mid; else hi = mid;
+  }
+  const span = cum[hi] - cum[lo];
+  const t = span < 0.01 ? 0 : (dist - cum[lo]) / span;
+  return {
+    lat: route[lo].lat + (route[hi].lat - route[lo].lat) * t,
+    lon: route[lo].lon + (route[hi].lon - route[lo].lon) * t
+  };
+}
+function project(lat, lon) {
+  if (route.length < 2) return null;
+  const lat0 = route[0].lat, lon0 = route[0].lon;
+  const R = 6371000, cl = Math.cos(lat0 * Math.PI / 180);
+  const xy = (la, lo) => [(lo - lon0) * Math.PI / 180 * R * cl, (la - lat0) * Math.PI / 180 * R];
+  const p = xy(lat, lon);
+  let best = 1e18, bestS = 0;
+  for (let i = 0; i < route.length - 1; i++) {
+    const a = xy(route[i].lat, route[i].lon), b = xy(route[i + 1].lat, route[i + 1].lon);
+    const vx = b[0] - a[0], vy = b[1] - a[1];
+    const l2 = vx * vx + vy * vy;
+    let t = l2 > 0 ? ((p[0] - a[0]) * vx + (p[1] - a[1]) * vy) / l2 : 0;
+    t = Math.max(0, Math.min(1, t));
+    const dx = a[0] + vx * t - p[0], dy = a[1] + vy * t - p[1];
+    const d = dx * dx + dy * dy;
+    if (d < best) { best = d; bestS = cum[i] + t * (cum[i + 1] - cum[i]); }
+  }
+  return { s: bestS, dist: Math.sqrt(best) };
+}
+function thin(pts, step) {
+  if (pts.length < 2) return pts.slice();
+  const out = [pts[0]];
+  for (let i = 1; i < pts.length; i++) {
+    if (hav(out[out.length - 1], pts[i]) >= step) out.push(pts[i]);
+  }
+  const last = pts[pts.length - 1];
+  if (hav(out[out.length - 1], last) > 1) out.push(last);
+  return out;
+}
+function windowPts(fromS) {
+  const endS = Math.min(routeLen(), fromS + WINDOW_M);
+  const raw = [pointAt(fromS)];
+  for (let i = 0; i < route.length; i++) {
+    if (cum[i] > fromS + 2 && cum[i] < endS - 2) raw.push(route[i]);
+  }
+  raw.push(pointAt(endS));
+  return { pts: thin(raw, 8), endS };
+}
+
+function drawRoute() {
+  if (line) map.removeLayer(line);
+  line = L.polyline(route.map(p => [p.lat, p.lon]), { color: "#fc0", weight: 5 }).addTo(map);
+  map.fitBounds(line.getBounds(), { padding: [20, 20] });
+}
+function moveRider(lat, lon) {
+  if (!riderMarker) riderMarker = L.circleMarker([lat, lon], { radius: 7, color: "#3df", fillOpacity: 1 }).addTo(map);
+  else riderMarker.setLatLng([lat, lon]);
+}
+function setDest(lat, lon, name) {
+  dest = { lat, lon, name: name || "" };
+  if (destMarker) destMarker.setLatLng([lat, lon]);
+  else destMarker = L.circleMarker([lat, lon], { radius: 8, color: "#f55", fillOpacity: 1 }).addTo(map);
+  map.setView([lat, lon], Math.max(map.getZoom(), 13));
+  document.getElementById("go").disabled = false;
+  setStatus(name ? ("Arrivo: " + name) : "Arrivo impostato sulla mappa.");
+}
+
+function setStart(lat, lon, lock) {
+  startPt = { lat, lon };
+  if (lock) startLocked = true;
+  if (startMarker) startMarker.setLatLng([lat, lon]);
+  else startMarker = L.circleMarker([lat, lon], { radius: 8, color: "#3d3", fillOpacity: 1 }).addTo(map);
+}
+
+document.getElementById("startHere").onclick = () => {
+  if (gps) setStart(gps.lat, gps.lon, true);
+  else {
+    const c = map.getCenter();
+    setStart(c.lat, c.lng, true);
+  }
+  setStatus("Partenza impostata.");
+};
+
+function packBegin(n, lat, lon) {
+  const b = new DataView(new ArrayBuffer(11));
+  b.setUint8(0, 1); b.setUint16(1, n, true); b.setInt32(3, e7(lat), true); b.setInt32(7, e7(lon), true);
+  return b.buffer;
+}
+function packPoints(first, chunk) {
+  const b = new DataView(new ArrayBuffer(4 + chunk.length * 8));
+  b.setUint8(0, 2); b.setUint16(1, first, true); b.setUint8(3, chunk.length);
+  chunk.forEach((p, i) => {
+    b.setInt32(4 + i * 8, e7(p.lat), true);
+    b.setInt32(8 + i * 8, e7(p.lon), true);
+  });
+  return b.buffer;
+}
+function packEnd(n) {
+  const b = new DataView(new ArrayBuffer(3));
+  b.setUint8(0, 3); b.setUint16(1, n, true);
+  return b.buffer;
+}
+function packPos(lat, lon, kmh, course) {
+  const b = new DataView(new ArrayBuffer(13));
+  b.setUint8(0, 4);
+  b.setInt32(1, e7(lat), true);
+  b.setInt32(5, e7(lon), true);
+  b.setUint16(9, Math.max(0, Math.min(65535, Math.round(kmh * 10))), true);
+  const c = Math.round(((course % 360) + 360) % 360 * 10) % 3600;
+  b.setUint16(11, c, true);
+  return b.buffer;
+}
+
+let chain = Promise.resolve();
+function enqueue(fn) {
+  const run = chain.then(fn, fn);
+  chain = run.then(() => {}, () => {});
+  return run;
+}
+function writePkt(buf) {
+  return enqueue(() => gattChar.writeValueWithResponse(buf));
+}
+
+async function sendChunks(pts, per) {
+  await writePkt(packBegin(pts.length, pts[0].lat, pts[0].lon));
+  for (let i = 0; i < pts.length; i += per) {
+    const chunk = pts.slice(i, i + per);
+    await writePkt(packPoints(i, chunk));
+    setStatus("Invio percorso " + Math.min(pts.length, i + chunk.length) + "/" + pts.length);
+  }
+  await writePkt(packEnd(pts.length));
+}
+async function sendWindow(fromS) {
+  const w = windowPts(Math.max(0, fromS));
+  if (w.pts.length < 2) return;
+  busy = true;
+  try {
+    try {
+      await sendChunks(w.pts, perPacket);
+    } catch (err) {
+      if (perPacket === 2) throw err;
+      perPacket = 2;
+      await sendChunks(w.pts, 2);
+    }
+    sentTo = w.endS;
+    setStatus("Percorso attivo, " + (routeLen() / 1000).toFixed(1) + " km verso l'arrivo.");
+  } finally {
+    busy = false;
+  }
+}
+
+async function fetchRoute(a, b) {
+  const url = "https://router.project-osrm.org/route/v1/driving/" +
+    a.lon + "," + a.lat + ";" + b.lon + "," + b.lat + "?overview=full&geometries=geojson";
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!data.routes || !data.routes.length) throw new Error("Nessuna strada");
+  return data.routes[0].geometry.coordinates.map(([lon, lat]) => ({ lat, lon }));
+}
+
+async function reroute(lat, lon) {
+  const now = Date.now();
+  if (now - lastReroute < REROUTE_MS) return;
+  lastReroute = now;
+  setStatus("Deviazione: calcolo la strada nuova…");
+  const pts = thin(await fetchRoute({ lat, lon }, dest), 8);
+  route = pts;
+  setCum(route);
+  drawRoute();
+  simS = 0;
+  await sendWindow(0);
+}
+
+async function onFix(lat, lon, kmh, course, accuracy) {
+  if (!following || busy || fixing) return;
+  fixing = true;
+  try {
+  moveRider(lat, lon);
+  const pr = project(lat, lon);
+  const simOn = document.getElementById("sim").checked;
+  if (!simOn && pr && accuracy <= 30 && pr.dist > OFF_M) {
+    offStreak++;
+    if (offStreak >= 3) {
+      offStreak = 0;
+      await reroute(lat, lon);
+      return;
+    }
+  } else offStreak = 0;
+  if (pr && pr.s > sentTo - 2500 && sentTo < routeLen() - 80) {
+    await sendWindow(Math.max(0, pr.s - 200));
+  }
+  if (gattChar) await writePkt(packPos(lat, lon, kmh, course));
+  } finally {
+    fixing = false;
+  }
+}
+
+function stopFollow() {
+  following = false;
+  if (watchId) { navigator.geolocation.clearWatch(watchId); watchId = 0; }
+  if (simTimer) { clearInterval(simTimer); simTimer = 0; }
+  document.getElementById("stop").disabled = true;
+  document.getElementById("go").disabled = !dest;
+  setStatus("Fermo.");
+}
+
+document.getElementById("connect").onclick = async () => {
+  if (!navigator.bluetooth) { setStatus("Questo browser non ha il Bluetooth."); return; }
+  let dev;
+  try {
+    dev = await navigator.bluetooth.requestDevice({
+      filters: [{ name: BLE_NAME }],
+      optionalServices: [SVC]
+    });
+  } catch (err) {
+    log("ERROR", "scelta dispositivo: " + errText(err));
+    setStatus(err.message || "Connessione annullata.");
+    return;
+  }
+  log("INFO", "scelto " + (dev.name || "?") + " id=" + (dev.id || "?"));
+  dev.addEventListener("gattserverdisconnected", () => {
+    log("ERROR", "gatt chiuso dal dispositivo");
+    if (gattChar) {
+      gattChar = null;
+      setStatus("HUD scollegato.");
+    }
+  });
+  let lastErr = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      setStatus(attempt ? "Riprovo il collegamento…" : "Connessione…");
+      log("INFO", "tentativo " + (attempt + 1) + " gatt=" + dev.gatt.connected);
+      if (!dev.gatt.connected) await dev.gatt.connect();
+      await new Promise((r) => setTimeout(r, 300));
+      log("INFO", "dopo connect gatt=" + dev.gatt.connected);
+      if (!dev.gatt.connected) await dev.gatt.connect();
+      const svc = await dev.gatt.getPrimaryService(SVC);
+      gattChar = await svc.getCharacteristic(CHR);
+      log("INFO", "servizio percorso aperto");
+      setStatus("HUD collegato.");
+      return;
+    } catch (err) {
+      lastErr = err;
+      gattChar = null;
+      log("ERROR", "tentativo " + (attempt + 1) + " " + errText(err));
+      try { if (dev.gatt.connected) dev.gatt.disconnect(); } catch (e) {}
+      await new Promise((r) => setTimeout(r, 1500));
+    }
+  }
+  setStatus(lastErr && lastErr.message ? lastErr.message : "Collegamento fallito.");
+};
+
+map.on("click", (e) => setDest(e.latlng.lat, e.latlng.lng, ""));
+
+document.getElementById("go").onclick = async () => {
+  if (!dest) { setStatus("Prima tocca l'arrivo sulla mappa."); return; }
+  if (!gattChar) { setStatus("Prima collega l'HUD."); return; }
+  if (!startPt) { setStatus("Imposta la partenza (qui, o attendi il GPS)."); return; }
+  const simOn = document.getElementById("sim").checked;
+  document.getElementById("go").disabled = true;
+  try {
+    setStatus("Calcolo il percorso…");
+    startLocked = true;
+    route = thin(await fetchRoute(startPt, dest), 8);
+    setCum(route);
+    drawRoute();
+    simS = 0;
+    offStreak = 0;
+    await sendWindow(0);
+    following = true;
+    document.getElementById("stop").disabled = false;
+    if (simOn) {
+      const kmh = Math.max(10, Number(document.getElementById("kmh").value) || 70);
+      let last = performance.now();
+      simTimer = setInterval(() => {
+        const now = performance.now();
+        const dt = Math.min(0.5, (now - last) / 1000);
+        last = now;
+        simS += kmh / 3.6 * dt;
+        if (simS >= routeLen()) simS = 0;
+        const here = pointAt(simS);
+        const ahead = pointAt(Math.min(routeLen(), simS + 15));
+        onFix(here.lat, here.lon, kmh, bearing(here, ahead), 5);
+      }, 250);
+    } else if (navigator.geolocation) {
+      watchId = navigator.geolocation.watchPosition((pos) => {
+        gps = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+        const kmh = pos.coords.speed == null || pos.coords.speed < 0 ? 0 : pos.coords.speed * 3.6;
+        const course = pos.coords.heading == null || Number.isNaN(pos.coords.heading) ? 0 : pos.coords.heading;
+        onFix(gps.lat, gps.lon, kmh, course, pos.coords.accuracy || 99);
+      }, () => setStatus("GPS non disponibile."), { enableHighAccuracy: true, maximumAge: 1000 });
+    }
+  } catch (err) {
+    log("ERROR", "avvio " + errText(err));
+    document.getElementById("go").disabled = false;
+    setStatus(err.message || "Percorso non calcolato.");
+  }
+};
+document.getElementById("stop").onclick = stopFollow;
+
+async function search() {
+  const q = document.getElementById("q").value.trim();
+  const hits = document.getElementById("hits");
+  hits.innerHTML = "";
+  if (q.length < 2) return;
+  let data;
+  try {
+    const bias = gps ? "&lat=" + gps.lat + "&lon=" + gps.lon : "";
+    const res = await fetch("/api/geocode?q=" + encodeURIComponent(q) + bias);
+    data = await res.json();
+  } catch (err) {
+    setStatus("Ricerca non disponibile.");
+    return;
+  }
+  (data.features || []).forEach((f) => {
+    const [lon, lat] = f.geometry.coordinates;
+    const p = f.properties || {};
+    const name = [p.name, p.city, p.state, p.country].filter(Boolean).join(", ");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = name;
+    b.onclick = () => { hits.innerHTML = ""; setDest(lat, lon, name); };
+    hits.appendChild(b);
+  });
+  if (!hits.children.length) setStatus("Nessun risultato.");
+}
+document.getElementById("search").onclick = search;
+document.getElementById("q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
+
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition((pos) => {
+    gps = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+    if (!startLocked) setStart(gps.lat, gps.lon, false);
+    if (!following) moveRider(gps.lat, gps.lon);
+    if (map.getZoom() < 12) map.setView([gps.lat, gps.lon], 14);
+  }, () => {}, { enableHighAccuracy: true, maximumAge: 2000 });
+}
+</script>
+</body>
+</html>

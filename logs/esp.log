@@ -1,0 +1,605 @@
+
+--- 2026-10-05 08:43:45 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[585] ROUTE gatt=1 annuncio=1
+[585] BLE peers=0 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[582] ROUTE gatt=1 annuncio=1
+[583] BLE peers=0 adv=1
+[10218] BLE peers=0 adv=0
+
+--- 2026-10-05 08:49:05 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[585] ROUTE gatt=1 annuncio=1
+[585] BLE peers=0 adv=1
+[108971] BLE peers=0 adv=0
+[109372] BLE annuncio fermo, riavvio=1
+[109380] BLE peers=0 adv=1
+[111775] BLE peers=0 adv=0
+[112176] BLE annuncio fermo, riavvio=1
+[112184] BLE peers=0 adv=1
+[114355] BLE peers=0 adv=0
+[114823] BLE annuncio fermo, riavvio=1
+[114831] BLE peers=0 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[579] ROUTE gatt=1 annuncio=1
+[580] BLE peers=0 adv=1
+[12611] BLE peers=0 adv=0
+[13014] BLE annuncio fermo, riavvio=1
+[13022] BLE peers=0 adv=1
+[15173] BLE peers=0 adv=0
+[15574] BLE annuncio fermo, riavvio=1
+[15582] BLE peers=0 adv=1
+[18327] BLE peers=0 adv=0
+[18729] BLE annuncio fermo, riavvio=1
+[18737] BLE peers=0 adv=1
+[1974382] BLE peers=0 adv=0
+[1974784] BLE annuncio fermo, riavvio=1
+[1974794] BLE peers=0 adv=1
+[1976280] BLE peers=0 adv=0
+[1976685] BLE annuncio fermo, riavvio=1
+[1976693] BLE peers=0 adv=1
+[1976962] BLE peers=0 adv=0
+[1977365] BLE annuncio fermo, riavvio=1
+[1977373] BLE peers=0 adv=1
+
+--- 2026-10-05 09:26:55 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[585] ROUTE gatt=1 annuncio=1
+[585] BLE peers=0 adv=1
+[33823] BLE peers=0 adv=0
+[41828] BLE annuncio assente da 8s, riavvio=1
+[41836] BLE peers=0 adv=1
+
+--- 2026-10-05 09:32:51 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[583] ROUTE gatt=1 annuncio=1
+[584] BLE peers=0 adv=1
+[7743] BLE peers=0 adv=0
+[ble] GAP disc prima del connect h=0 reason=0x0213
+[15783] BLE annuncio assente da 8s, riavvio=1
+[15793] BLE peers=0 adv=1
+[117131] BLE peers=0 adv=0
+[118047] BLE connesso
+[118053] BLE annuncio per altro client=1
+[118105] BLE peers=1 adv=1
+
+--- 2026-10-05 09:36:49 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[584] ROUTE gatt=1 annuncio=1
+[585] BLE peers=0 adv=1
+[8961] BLE peers=0 adv=0
+[9779] BLE connesso
+[9784] BLE annuncio per altro client=1
+[9814] BLE peers=1 adv=1
+����������������������������������������������������������������0284] BLE disconnesso
+
+--- 2026-10-05 22:44:31 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[611] ROUTE gatt=1 annuncio=1
+[611] BLE peers=0 adv=1
+[69446] BLE connesso
+[69451] BLE annuncio per altro client=1
+[69464] BLE peers=1 adv=1
+[HUD] layout = MAPPA
+[89846] ROUTE percorso 6145 m, 22 curve
+[102446] ROUTE percorso 6145 m, 22 curve
+[102522] ROUTE posizione 45.37077 11.92700
+[115312] ROUTE percorso 6145 m, 22 curve
+[128185] ROUTE percorso 6145 m, 22 curve
+[129970] BLE disconnesso
+[129974] BLE peers=0 adv=1
+����������������������������������������������������������������05404] BLE peers=0 adv=0
+
+--- 2026-10-05 22:50:57 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[602] ROUTE gatt=1 annuncio=1
+[602] BLE peers=0 adv=1
+[199163] BLE peers=0 adv=0
+[199237] BLE connesso
+[199238] BLE peers=1 adv=0
+[199243] BLE annuncio per altro client=1
+[199243] BLE peers=1 adv=1
+[HUD] layout = CURVA
+[204008] ROUTE percorso 985 m, 5 curve
+[204099] ROUTE posizione 45.39722 11.88908
+[HUD] layout = CURVA
+[253734] ROUTE percorso 195 m, 1 curve
+[HUD] MIRROR_X = 1
+[391749] BLE disconnesso
+[391752] BLE peers=0 adv=1
+[427597] BLE peers=0 adv=0
+[427662] BLE peers=1 adv=0
+[427662] BLE connesso
+[427667] BLE peers=1 adv=1
+[427668] BLE annuncio per altro client=1
+[HUD] MIRROR_X = 0
+
+--- 2026-10-05 23:21:20 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[605] ROUTE gatt=1 annuncio=1
+[605] BLE peers=0 adv=1
+[66160] BLE peers=0 adv=0
+[66226] BLE connesso
+[66231] BLE annuncio per altro client=1
+[66279] BLE peers=1 adv=1
+[80863] ROUTE percorso 6160 m, 21 curve
+[94722] ROUTE percorso 6160 m, 21 curve
+[94909] ROUTE posizione 45.37077 11.92680
+[108493] ROUTE percorso 6160 m, 21 curve
+[121678] ROUTE percorso 6160 m, 21 curve
+[134819] ROUTE percorso 6160 m, 21 curve
+[147599] ROUTE percorso 6160 m, 21 curve
+[160559] ROUTE percorso 6160 m, 21 curve
+[173745] ROUTE percorso 6160 m, 21 curve
+����������������������������������������������������������������86843] ROUTE percorso 6160 m, 21 curve
+
+--- 2026-10-05 23:47:49 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[605] ROUTE gatt=1 annuncio=1
+[605] BLE peers=0 adv=1
+[216036] BLE peers=0 adv=0
+[216117] BLE connesso
+[216122] BLE annuncio per altro client=1
+[216184] BLE peers=1 adv=1
+[225622] ROUTE percorso 5185 m, 22 curve
+[233036] ROUTE posizione 45.37077 11.92676
+[BTN] layout = CURVA
+[594979] BLE disconnesso
+[594981] BLE peers=0 adv=1
+
+--- 2026-10-06 09:43:45 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[608] ROUTE gatt=1 annuncio=1
+[609] BLE peers=0 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[600] ROUTE gatt=1 annuncio=1
+[600] BLE peers=0 adv=1
+[2341414] BLE peers=0 adv=0
+
+--- 2026-10-06 11:49:46 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[606] ROUTE gatt=1 annuncio=1
+[606] BLE peers=0 adv=1
+[4709] BLE peers=0 adv=0
+[4766] BLE connesso
+[4770] BLE peers=1 adv=1
+[4771] BLE annuncio per altro client=1
+[350081] ROUTE percorso 10995 m, 38 curve
+[361669] ROUTE posizione 45.37077 11.92699
+[646781] ROUTE percorso 10995 m, 48 curve
+[BTN] layout = CURVA
+[BTN] layout = ICONA
+[BTN] layout = MAPPA
+[918263] ROUTE percorso 7060 m, 29 curve
+[HUD] layout = CURVA
+[HUD] layout = ICONA
+[HUD] MIRROR_X = 1
+[HUD] MIRROR_X = 0
+[HUD] layout = MAPPA
+[1878549] ROUTE percorso 10995 m, 39 curve
+[8697998] ROUTE percorso 7530 m, 40 curve
+[10281321] ROUTE percorso 10995 m, 39 curve
+
+--- 2026-10-06 15:17:14 COM7 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[592] ROUTE gatt=1 annuncio=1
+[593] BLE peers=0 adv=1
+[4741] BLE peers=0 adv=0
+[4823] BLE connesso
+[4826] BLE peers=1 adv=1
+[4828] BLE annuncio per altro client=1
+[HUD] layout = CURVA
+[171894] ROUTE percorso 10995 m, 38 curve
+[172047] ROUTE posizione 45.37077 11.92699
+[461337] ROUTE percorso 10995 m, 48 curve
+[732826] ROUTE percorso 7060 m, 29 curve
+[2145462] ROUTE percorso 10995 m, 39 curve
+[2437026] ROUTE percorso 10995 m, 48 curve
+[2708419] ROUTE percorso 7075 m, 29 curve
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[5448] ROUTE gatt=1 annuncio=1
+[5449] BLE peers=0 adv=1
+[5460] BLE peers=0 adv=0
+[5536] BLE connesso
+[5540] BLE peers=1 adv=1
+[5542] BLE annuncio per altro client=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[595] ROUTE gatt=1 annuncio=1
+[596] BLE peers=0 adv=1
+[4555] BLE peers=0 adv=0
+[4663] BLE connesso
+[4669] BLE annuncio per altro client=1
+[4675] BLE peers=1 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[403] ROUTE gatt=1 annuncio=1
+[403] BLE peers=0 adv=1
+[4590] BLE peers=0 adv=0
+[4704] BLE connesso
+[4706] BLE peers=1 adv=0
+[4710] BLE annuncio per altro client=1
+[4711] BLE peers=1 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[398] ROUTE gatt=1 annuncio=1
+[398] BLE peers=0 adv=1
+[4580] BLE peers=0 adv=0
+[4661] BLE connesso
+[4661] BLE peers=1 adv=0
+[4666] BLE annuncio per altro client=1
+[4667] BLE peers=1 adv=1
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1184
+load:0x40078000,len:13232
+load:0x40080400,len:3028
+entry 0x400805e4
+
+HUD-Moto fw 1.1.0  (SDA 21, SCL 22, I2C 100000 Hz)
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[CURVA] strada demo 2075 m, 9 curve
+[BLE] nome HUD-Moto  MAC c8:2e:18:8e:b2:fa
+[593] ROUTE gatt=1 annuncio=1
+[594] BLE peers=0 adv=1
+[4558] BLE peers=0 adv=0
+[4673] BLE peers=1 adv=0
+[4673] BLE connesso
+[4679] BLE annuncio per altro client=1
+[4679] BLE peers=1 adv=1
+OLED livello=120 contrasto=69 pre=F1 vcom=40
+OLED livello=0 contrasto=10 pre=41 vcom=20
+OLED livello=68 contrasto=42 pre=F1 vcom=40
+OLED livello=127 contrasto=6F pre=F1 vcom=40
+[HUD] MIRROR_X = 1
+OLED livello=255 contrasto=CF pre=F1 vcom=40
+[HUD] MIRROR_X = 0
+[HUD] layout = MAPPA
+[HUD] layout = ICONA
+[353575] ROUTE percorso 2745 m, 9 curve
+[354422] ROUTE posizione 45.37040 11.92656
+[443139] ROUTE percorso 5995 m, 31 curve
+[BTN] layout = MAPPA
+[BTN] layout = CURVA
+[BTN] layout = ICONA

@@ -1,0 +1,44 @@
+=== 1) Archi sintetici ===
+arco R=   10 m  90° SX -> curve 1  Rmin 11.7  inizio 200 (vero 200)  fine 215 (vero 216)  angolo 92  grado 1
+arco R=   15 m 170° DX -> curve 1  Rmin 15.2  inizio 200 (vero 200)  fine 245 (vero 245)  angolo 172  grado 1
+arco R=   30 m  90° DX -> curve 1  Rmin 30.3  inizio 200 (vero 200)  fine 245 (vero 247)  angolo 90  grado 2
+arco R=   55 m  60° SX -> curve 1  Rmin 56.0  inizio 200 (vero 200)  fine 255 (vero 258)  angolo 60  grado 3
+arco R=   95 m  60° DX -> curve 1  Rmin 96.4  inizio 200 (vero 200)  fine 295 (vero 299)  angolo 60  grado 4
+arco R=  160 m  45° SX -> curve 1  Rmin 163.4  inizio 200 (vero 200)  fine 325 (vero 326)  angolo 45  grado 5
+arco R=  300 m  30° DX -> curve 1  Rmin 304.5  inizio 210 (vero 200)  fine 350 (vero 357)  angolo 29  grado 6
+
+=== 2) Strada di montagna demo ===
+  lunghezza 2075 m, 416 campioni, 9 curve
+  #  inizio(m)  fine(m)  lungh  dir  Rmin(m)  angolo  grado  flag      v.ind.
+  1       255      310     55   DX     43.8     72°   D3              45 km/h
+  2       465      490     25   SX      8.9    173°   S1              20 km/h
+  3       615      710     95   DX     36.3     99°   D2   STRINGE    41 km/h
+  4       815      910     95   SX    252.1     22°   S6             107 km/h
+  5       980     1025     45   DX     60.6     51°   D3              52 km/h
+  6      1050     1100     50   SX     61.3     49°   S3              53 km/h
+  7      1295     1535    240   DX     74.1    163°   D4   LUNGA      58 km/h
+  8      1655     1690     35   DX     11.4    165°   D1              23 km/h
+  9      1765     1875    110   SX    150.9     41°   S5              83 km/h
+
+=== 3) Proiezione posizione ===
+  errore massimo di proiezione (GPS spostato 3 m): 0.9 m
+
+=== 4) Formato BLE (lat/lon) ===
+  208 punti in 9 pacchetti -> 9 curve (locale: 9)
+
+=== 5) Vista CURVA ===
+  150 m prima della 1a curva: distanza 150, grado 3, dir 1, zoom 3.80 m/px, 50 punti
+
+TUTTI I TEST OK (0 errori)
+PNG: /workspace/hud-firmware/preview_curve_d3_150m.png
+PNG: /workspace/hud-firmware/preview_curve_hairpin_s1_60m.png
+PNG: /workspace/hud-firmware/preview_curve_tightening.png
+PNG: /workspace/hud-firmware/preview_idle.png
+PNG: /workspace/hud-firmware/preview_nav_icon.png
+PNG: /workspace/hud-firmware/preview_nav_icon_long.png
+PNG: /workspace/hud-firmware/preview_nav_icon_mirror.png
+PNG: /workspace/hud-firmware/preview_nav_map.png
+PNG: /workspace/hud-firmware/preview_nav_map_fallback.png
+PNG: /workspace/hud-firmware/preview_splash.png
+PNG: /workspace/hud-firmware/preview_waiting.png
+GIF: /workspace/hud-firmware/preview_curve_demo.gif 526 fotogrammi

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#FFF4F5F7</color>
+    <color name="panel">#FFFFFFFF</color>
+    <color name="text">#FF16181D</color>
+    <color name="muted">#FF6B7280</color>
+    <color name="accent">#FF1D4ED8</color>
+    <color name="sheet">#FFFFFFFF</color>
+    <color name="ink">#FF16181D</color>
+    <color name="sub">#FF6B7280</color>
+    <color name="nav">#FF1D4ED8</color>
+    <color name="chip">#FFF3F4F6</color>
+    <color name="line">#FFE6E8EE</color>
+    <color name="banner">#FF12141A</color>
+    <color name="banner_sub">#FFC5CAD3</color>
+    <color name="warn">#FFEA580C</color>
+    <color name="danger">#FFDC2626</color>
+    <color name="arrive">#FF15803D</color>
+</resources>

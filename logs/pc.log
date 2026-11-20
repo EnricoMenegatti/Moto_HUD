@@ -1,0 +1,237 @@
+2026-10-05 08:44:36 INFO pagina secure=true bluetooth=true origin=http://127.0.0.1:8080
+2026-10-05 08:44:48 INFO scelto HUD-Moto id=6EKbvLjdSmMntC2c6nvOTQ==
+2026-10-05 08:44:48 INFO Connessione…
+2026-10-05 08:44:48 INFO tentativo 1 gatt=false
+2026-10-05 08:44:49 INFO dopo connect gatt=true
+2026-10-05 08:44:49 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:44:49 ERROR tentativo 1 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:44:51 INFO Riprovo il collegamento…
+2026-10-05 08:44:51 INFO tentativo 2 gatt=false
+2026-10-05 08:44:59 ERROR tentativo 2 NetworkError: Connection Error: Connection attempt failed.
+2026-10-05 08:45:00 INFO Riprovo il collegamento…
+2026-10-05 08:45:00 INFO tentativo 3 gatt=false
+2026-10-05 08:45:08 ERROR tentativo 3 NetworkError: Connection Error: Connection attempt failed.
+2026-10-05 08:45:10 INFO Connection Error: Connection attempt failed.
+2026-10-05 08:50:48 INFO pagina secure=true bluetooth=true origin=http://127.0.0.1:8080
+2026-10-05 08:50:54 INFO scelto HUD-Moto id=6EKbvLjdSmMntC2c6nvOTQ==
+2026-10-05 08:50:54 INFO Connessione…
+2026-10-05 08:50:54 INFO tentativo 1 gatt=false
+2026-10-05 08:50:55 INFO dopo connect gatt=true
+2026-10-05 08:50:55 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:50:55 ERROR tentativo 1 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:50:57 INFO Riprovo il collegamento…
+2026-10-05 08:50:57 INFO tentativo 2 gatt=false
+2026-10-05 08:50:57 INFO dopo connect gatt=true
+2026-10-05 08:50:58 ERROR tentativo 2 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:50:58 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:50:59 INFO Riprovo il collegamento…
+2026-10-05 08:50:59 INFO tentativo 3 gatt=false
+2026-10-05 08:51:00 INFO dopo connect gatt=true
+2026-10-05 08:51:00 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:51:00 ERROR tentativo 3 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:51:02 INFO GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:51:32 INFO pagina secure=true bluetooth=true origin=http://127.0.0.1:8080
+2026-10-05 08:51:41 INFO scelto HUD-Moto id=6EKbvLjdSmMntC2c6nvOTQ==
+2026-10-05 08:51:41 INFO Connessione…
+2026-10-05 08:51:41 INFO tentativo 1 gatt=false
+2026-10-05 08:51:42 INFO dopo connect gatt=true
+2026-10-05 08:51:42 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:51:42 ERROR tentativo 1 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:51:44 INFO Riprovo il collegamento…
+2026-10-05 08:51:44 INFO tentativo 2 gatt=false
+2026-10-05 08:51:45 INFO dopo connect gatt=true
+2026-10-05 08:51:45 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:51:45 ERROR tentativo 2 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:51:46 INFO Riprovo il collegamento…
+2026-10-05 08:51:46 INFO tentativo 3 gatt=false
+2026-10-05 08:51:48 INFO dopo connect gatt=true
+2026-10-05 08:51:48 ERROR gatt chiuso dal dispositivo
+2026-10-05 08:51:48 ERROR tentativo 3 NetworkError: GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 08:51:50 INFO GATT Server is disconnected. Cannot retrieve services. (Re)connect first with `device.gatt.connect`.
+2026-10-05 11:23:56 INFO pagina secure=true bluetooth=true origin=http://127.0.0.1:8080
+2026-10-05 11:24:00 INFO scelto HUD-Moto id=6EKbvLjdSmMntC2c6nvOTQ==
+2026-10-05 11:24:00 INFO Connessione…
+2026-10-05 11:24:00 INFO tentativo 1 gatt=false
+2026-10-05 11:24:01 INFO dopo connect gatt=true
+2026-10-05 11:24:02 INFO servizio percorso aperto
+2026-10-05 11:24:02 INFO HUD collegato.
+2026-10-05 11:24:10 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:24:13 INFO Partenza impostata.
+2026-10-05 11:24:15 INFO Calcolo il percorso…
+2026-10-05 11:24:15 INFO GPS non disponibile.
+2026-10-05 11:24:28 INFO Fermo.
+2026-10-05 11:24:28 INFO Calcolo il percorso…
+2026-10-05 11:24:51 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:24:54 INFO Calcolo il percorso…
+2026-10-05 11:24:54 INFO Invio percorso 8/24
+2026-10-05 11:24:54 INFO Invio percorso 16/24
+2026-10-05 11:24:54 INFO Invio percorso 24/24
+2026-10-05 11:24:54 INFO Percorso attivo, 0.4 km verso l'arrivo.
+2026-10-05 11:25:10 INFO Fermo.
+2026-10-05 11:25:19 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:25:20 INFO Partenza impostata.
+2026-10-05 11:25:26 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:25:28 INFO Calcolo il percorso…
+2026-10-05 11:25:28 INFO Invio percorso 8/476
+2026-10-05 11:25:28 INFO Invio percorso 16/476
+2026-10-05 11:25:29 INFO Invio percorso 24/476
+2026-10-05 11:25:29 INFO Invio percorso 32/476
+2026-10-05 11:25:29 INFO Invio percorso 40/476
+2026-10-05 11:25:29 INFO Invio percorso 48/476
+2026-10-05 11:25:29 INFO Invio percorso 56/476
+2026-10-05 11:25:29 INFO Invio percorso 64/476
+2026-10-05 11:25:29 INFO Invio percorso 72/476
+2026-10-05 11:25:30 INFO Invio percorso 80/476
+2026-10-05 11:25:30 INFO Invio percorso 88/476
+2026-10-05 11:25:30 INFO Invio percorso 96/476
+2026-10-05 11:25:30 INFO Invio percorso 104/476
+2026-10-05 11:25:30 INFO Invio percorso 112/476
+2026-10-05 11:25:30 INFO Invio percorso 120/476
+2026-10-05 11:25:30 INFO Invio percorso 128/476
+2026-10-05 11:25:30 INFO Invio percorso 136/476
+2026-10-05 11:25:31 INFO Invio percorso 144/476
+2026-10-05 11:25:31 INFO Invio percorso 152/476
+2026-10-05 11:25:31 INFO Invio percorso 160/476
+2026-10-05 11:25:31 INFO Invio percorso 168/476
+2026-10-05 11:25:31 INFO Invio percorso 176/476
+2026-10-05 11:25:31 INFO Invio percorso 184/476
+2026-10-05 11:25:31 INFO Invio percorso 192/476
+2026-10-05 11:25:31 INFO Invio percorso 200/476
+2026-10-05 11:25:32 INFO Invio percorso 208/476
+2026-10-05 11:25:32 INFO Invio percorso 216/476
+2026-10-05 11:25:32 INFO Invio percorso 224/476
+2026-10-05 11:25:32 INFO Invio percorso 232/476
+2026-10-05 11:25:32 INFO Invio percorso 240/476
+2026-10-05 11:25:32 INFO Invio percorso 248/476
+2026-10-05 11:25:32 INFO Invio percorso 256/476
+2026-10-05 11:25:33 INFO Invio percorso 264/476
+2026-10-05 11:25:33 INFO Invio percorso 272/476
+2026-10-05 11:25:33 INFO Invio percorso 280/476
+2026-10-05 11:25:33 INFO Invio percorso 288/476
+2026-10-05 11:25:33 INFO Invio percorso 296/476
+2026-10-05 11:25:33 INFO Invio percorso 304/476
+2026-10-05 11:25:33 INFO Invio percorso 312/476
+2026-10-05 11:25:33 INFO Invio percorso 320/476
+2026-10-05 11:25:34 INFO Invio percorso 328/476
+2026-10-05 11:25:34 INFO Invio percorso 336/476
+2026-10-05 11:25:34 INFO Invio percorso 344/476
+2026-10-05 11:25:34 INFO Invio percorso 352/476
+2026-10-05 11:25:34 INFO Invio percorso 360/476
+2026-10-05 11:25:34 INFO Invio percorso 368/476
+2026-10-05 11:25:34 INFO Invio percorso 376/476
+2026-10-05 11:25:35 INFO Invio percorso 384/476
+2026-10-05 11:25:35 INFO Invio percorso 392/476
+2026-10-05 11:25:35 INFO Invio percorso 400/476
+2026-10-05 11:25:35 INFO Invio percorso 408/476
+2026-10-05 11:25:35 INFO Invio percorso 416/476
+2026-10-05 11:25:35 INFO Invio percorso 424/476
+2026-10-05 11:25:35 INFO Invio percorso 432/476
+2026-10-05 11:25:36 INFO Invio percorso 440/476
+2026-10-05 11:25:36 INFO Invio percorso 448/476
+2026-10-05 11:25:36 INFO Invio percorso 456/476
+2026-10-05 11:25:36 INFO Invio percorso 464/476
+2026-10-05 11:25:36 INFO Invio percorso 472/476
+2026-10-05 11:25:36 INFO Invio percorso 476/476
+2026-10-05 11:25:36 INFO Percorso attivo, 12.7 km verso l'arrivo.
+2026-10-05 11:29:11 INFO Invio percorso 8/205
+2026-10-05 11:29:11 INFO Invio percorso 16/205
+2026-10-05 11:29:12 INFO Invio percorso 24/205
+2026-10-05 11:29:12 INFO Invio percorso 32/205
+2026-10-05 11:29:12 INFO Invio percorso 40/205
+2026-10-05 11:29:12 INFO Invio percorso 48/205
+2026-10-05 11:29:12 INFO Invio percorso 56/205
+2026-10-05 11:29:12 INFO Invio percorso 64/205
+2026-10-05 11:29:12 INFO Invio percorso 72/205
+2026-10-05 11:29:12 INFO Invio percorso 80/205
+2026-10-05 11:29:13 INFO Invio percorso 88/205
+2026-10-05 11:29:13 INFO Invio percorso 96/205
+2026-10-05 11:29:13 INFO Invio percorso 104/205
+2026-10-05 11:29:13 INFO Invio percorso 112/205
+2026-10-05 11:29:13 INFO Invio percorso 120/205
+2026-10-05 11:29:13 INFO Invio percorso 128/205
+2026-10-05 11:29:13 INFO Invio percorso 136/205
+2026-10-05 11:29:14 INFO Invio percorso 144/205
+2026-10-05 11:29:14 INFO Invio percorso 152/205
+2026-10-05 11:29:14 INFO Invio percorso 160/205
+2026-10-05 11:29:14 INFO Invio percorso 168/205
+2026-10-05 11:29:14 INFO Invio percorso 176/205
+2026-10-05 11:29:14 INFO Invio percorso 184/205
+2026-10-05 11:29:14 INFO Invio percorso 192/205
+2026-10-05 11:29:14 INFO Invio percorso 200/205
+2026-10-05 11:29:15 INFO Invio percorso 205/205
+2026-10-05 11:29:15 INFO Percorso attivo, 12.7 km verso l'arrivo.
+2026-10-05 11:31:27 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:31:40 INFO Calcolo il percorso…
+2026-10-05 11:31:40 INFO Invio percorso 8/20
+2026-10-05 11:31:41 INFO Invio percorso 16/20
+2026-10-05 11:31:41 INFO Invio percorso 20/20
+2026-10-05 11:31:41 INFO Percorso attivo, 2.3 km verso l'arrivo.
+2026-10-05 11:31:46 INFO Fermo.
+2026-10-05 11:31:51 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:31:52 INFO Partenza impostata.
+2026-10-05 11:31:54 INFO Arrivo impostato sulla mappa.
+2026-10-05 11:31:56 INFO Calcolo il percorso…
+2026-10-05 11:31:56 INFO Invio percorso 8/473
+2026-10-05 11:31:57 INFO Invio percorso 16/473
+2026-10-05 11:31:57 INFO Invio percorso 24/473
+2026-10-05 11:31:57 INFO Invio percorso 32/473
+2026-10-05 11:31:57 INFO Invio percorso 40/473
+2026-10-05 11:31:57 INFO Invio percorso 48/473
+2026-10-05 11:31:57 INFO Invio percorso 56/473
+2026-10-05 11:31:57 INFO Invio percorso 64/473
+2026-10-05 11:31:58 INFO Invio percorso 72/473
+2026-10-05 11:31:58 INFO Invio percorso 80/473
+2026-10-05 11:31:58 INFO Invio percorso 88/473
+2026-10-05 11:31:58 INFO Invio percorso 96/473
+2026-10-05 11:31:58 INFO Invio percorso 104/473
+2026-10-05 11:31:58 INFO Invio percorso 112/473
+2026-10-05 11:31:58 INFO Invio percorso 120/473
+2026-10-05 11:31:58 INFO Invio percorso 128/473
+2026-10-05 11:31:59 INFO Invio percorso 136/473
+2026-10-05 11:31:59 INFO Invio percorso 144/473
+2026-10-05 11:31:59 INFO Invio percorso 152/473
+2026-10-05 11:31:59 INFO Invio percorso 160/473
+2026-10-05 11:31:59 INFO Invio percorso 168/473
+2026-10-05 11:31:59 INFO Invio percorso 176/473
+2026-10-05 11:31:59 INFO Invio percorso 184/473
+2026-10-05 11:31:59 INFO Invio percorso 192/473
+2026-10-05 11:32:00 INFO Invio percorso 200/473
+2026-10-05 11:32:00 INFO Invio percorso 208/473
+2026-10-05 11:32:00 INFO Invio percorso 216/473
+2026-10-05 11:32:00 INFO Invio percorso 224/473
+2026-10-05 11:32:00 INFO Invio percorso 232/473
+2026-10-05 11:32:00 INFO Invio percorso 240/473
+2026-10-05 11:32:00 INFO Invio percorso 248/473
+2026-10-05 11:32:01 INFO Invio percorso 256/473
+2026-10-05 11:32:01 INFO Invio percorso 264/473
+2026-10-05 11:32:01 INFO Invio percorso 272/473
+2026-10-05 11:32:01 INFO Invio percorso 280/473
+2026-10-05 11:32:01 INFO Invio percorso 288/473
+2026-10-05 11:32:01 INFO Invio percorso 296/473
+2026-10-05 11:32:01 INFO Invio percorso 304/473
+2026-10-05 11:32:01 INFO Invio percorso 312/473
+2026-10-05 11:32:02 INFO Invio percorso 320/473
+2026-10-05 11:32:02 INFO Invio percorso 328/473
+2026-10-05 11:32:02 INFO Invio percorso 336/473
+2026-10-05 11:32:02 INFO Invio percorso 344/473
+2026-10-05 11:32:02 INFO Invio percorso 352/473
+2026-10-05 11:32:02 INFO Invio percorso 360/473
+2026-10-05 11:32:02 INFO Invio percorso 368/473
+2026-10-05 11:32:02 INFO Invio percorso 376/473
+2026-10-05 11:32:03 INFO Invio percorso 384/473
+2026-10-05 11:32:03 INFO Invio percorso 392/473
+2026-10-05 11:32:03 INFO Invio percorso 400/473
+2026-10-05 11:32:03 INFO Invio percorso 408/473
+2026-10-05 11:32:03 INFO Invio percorso 416/473
+2026-10-05 11:32:03 INFO Invio percorso 424/473
+2026-10-05 11:32:03 INFO Invio percorso 432/473
+2026-10-05 11:32:03 INFO Invio percorso 440/473
+2026-10-05 11:32:04 INFO Invio percorso 448/473
+2026-10-05 11:32:04 INFO Invio percorso 456/473
+2026-10-05 11:32:04 INFO Invio percorso 464/473
+2026-10-05 11:32:04 INFO Invio percorso 472/473
+2026-10-05 11:32:04 INFO Invio percorso 473/473
+2026-10-05 11:32:04 INFO Percorso attivo, 9.5 km verso l'arrivo.
+2026-10-05 11:51:09 INFO Fermo.
+2026-10-05 11:51:20 ERROR gatt chiuso dal dispositivo
+2026-10-05 11:51:20 INFO HUD scollegato.

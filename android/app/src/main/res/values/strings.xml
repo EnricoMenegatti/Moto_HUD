@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HUD Nav</string>
+    <string name="search_hint">Cerca un posto o un indirizzo</string>
+    <string name="search">Cerca</string>
+    <string name="go">Avvia</string>
+    <string name="sim">Simula</string>
+    <string name="stop">Termina</string>
+    <string name="locate">Qui</string>
+    <string name="overview">Tutto</string>
+    <string name="hud">Display</string>
+    <string name="fav">Preferito</string>
+    <string name="add_stop">＋ Tappa</string>
+    <string name="cat_fuel">Benzina</string>
+    <string name="cat_park">Parcheggio</string>
+    <string name="cat_food">Cibo</string>
+    <string name="cat_aid">Soccorso</string>
+    <string name="lay_icon">Icona</string>
+    <string name="lay_map">Mappa</string>
+    <string name="lay_curve">Curva</string>
+    <string name="bright">Luminosità</string>
+    <string name="mirror">Specchio per il vetrino</string>
+    <string name="power">Display acceso</string>
+    <string name="voice">Voce delle istruzioni</string>
+    <string name="recents">Recenti</string>
+    <string name="favorites">Preferiti</string>
+    <string name="credit">Mappa © OpenStreetMap. Autovelox, limiti e pericoli fissi da OSM, non le segnalazioni live di Waze.</string>
+</resources>
